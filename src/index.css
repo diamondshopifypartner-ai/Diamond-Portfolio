@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Helvetica Neue", "Inter", Arial, sans-serif;
+  --font-display: "Helvetica Neue", "Inter", Arial, sans-serif;
+  
+  --color-brand-blue: #0070FF;
+  --color-brand-purple: #9D00FF;
+  --color-editorial-black: #050505;
+  --color-editorial-charcoal: #0B0B0F;
+  --color-editorial-gray: #16161D;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-editorial-black text-white font-sans antialiased relative overflow-x-hidden;
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(0, 112, 255, 0.08) 0%, transparent 25%),
+      radial-gradient(circle at 100% 100%, rgba(157, 0, 255, 0.05) 0%, transparent 25%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .editorial-glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  .editorial-border {
+    @apply border border-white/10;
+  }
+  .editorial-glow {
+    box-shadow: 0 0 20px rgba(0, 112, 255, 0.2);
+  }
+  .text-editorial-glow {
+    text-shadow: 0 0 10px rgba(0, 112, 255, 0.5);
+  }
+}
+
+
