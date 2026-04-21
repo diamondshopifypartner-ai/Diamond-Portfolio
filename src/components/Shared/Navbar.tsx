@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, Folder, FileText, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { NavLink, Link } from 'react-router-dom';
 
@@ -14,19 +14,19 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Home', path: '/', icon: <Home className="w-3 h-3" /> },
+    { name: 'About', path: '/about', icon: <User className="w-3 h-3" /> },
+    { name: 'Services', path: '/services', icon: <Briefcase className="w-3 h-3" /> },
+    { name: 'Portfolio', path: '/portfolio', icon: <Folder className="w-3 h-3" /> },
+    { name: 'Blog', path: '/blog', icon: <FileText className="w-3 h-3" /> },
+    { name: 'Apply', path: '/contact', icon: <Mail className="w-3 h-3" /> }
   ];
 
   return (
-    <nav className={`fixed top-[60px] w-full z-50 transition-all duration-300 ${scrolled ? 'bg-editorial-black/80 backdrop-blur-lg border-b border-white/10 py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-[60px] w-full z-50 transition-all duration-300 ${scrolled ? 'bg-editorial-black/60 backdrop-blur-[10px] border-b border-white/10 py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-6 h-6 bg-brand-blue rotate-45 border-2 border-white shadow-[0_0_15px_rgba(0,112,255,0.5)]" />
+          <div className="w-6 h-6 bg-brand-diamond rotate-45 border-2 border-white shadow-[0_0_15px_rgba(0,251,255,0.5)]" />
           <span className="font-display text-xl font-extrabold tracking-tighter">DIAMOND TEAM</span>
         </Link>
 
@@ -36,12 +36,14 @@ const Navbar = () => {
             <NavLink 
               key={link.name} 
               to={link.path} 
-              className={({ isActive }) => `text-[12px] font-bold transition-colors uppercase tracking-[1px] ${isActive ? 'text-brand-blue' : 'text-white/60 hover:text-brand-blue'}`}
+              className={({ isActive }) => `text-[12px] font-bold transition-colors uppercase tracking-[1px] flex items-center gap-2 ${isActive ? 'text-brand-diamond' : 'text-white/60 hover:text-brand-diamond'}`}
             >
+              {link.icon}
               {link.name}
             </NavLink>
           ))}
-          <Link to="/contact" className="editorial-glass px-5 py-2 rounded-full text-[10px] font-extrabold uppercase tracking-[1px] hover:bg-brand-blue/20 transition-all">
+          <Link to="/contact" className="editorial-glass px-5 py-2 rounded-full text-[10px] font-extrabold uppercase tracking-[1px] hover:bg-brand-diamond/20 transition-all flex items-center gap-2">
+            <Mail className="w-3 h-3" />
             Get Started
           </Link>
         </div>
@@ -67,8 +69,11 @@ const Navbar = () => {
                   key={link.name} 
                   to={link.path} 
                   onClick={() => setIsOpen(false)} 
-                  className={({ isActive }) => `text-xl font-display font-medium ${isActive ? 'text-brand-blue' : 'text-white/80'}`}
+                  className={({ isActive }) => `text-xl font-display font-medium flex items-center gap-4 ${isActive ? 'text-brand-diamond' : 'text-white/80'}`}
                 >
+                  <span className="p-2 editorial-glass rounded-lg">
+                    {link.icon}
+                  </span>
                   {link.name}
                 </NavLink>
               ))}

@@ -1,12 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Helvetica Neue", "Inter", Arial, sans-serif;
-  --font-display: "Helvetica Neue", "Inter", Arial, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
-  --color-brand-blue: #0070FF;
+  --color-brand-blue: #00A3FF;
   --color-brand-purple: #9D00FF;
+  --color-brand-diamond: #00FBFF;
+  --color-cyber-lime: #CCFF00;
   --color-editorial-black: #050505;
   --color-editorial-charcoal: #0B0B0F;
   --color-editorial-gray: #16161D;
@@ -19,25 +23,63 @@
   body {
     @apply bg-editorial-black text-white font-sans antialiased relative overflow-x-hidden;
     background-image: 
-      radial-gradient(circle at 0% 0%, rgba(0, 112, 255, 0.08) 0%, transparent 25%),
+      radial-gradient(circle at 0% 0%, rgba(0, 163, 255, 0.08) 0%, transparent 25%),
       radial-gradient(circle at 100% 100%, rgba(157, 0, 255, 0.05) 0%, transparent 25%);
     background-attachment: fixed;
   }
 }
 
 @layer utilities {
+  .bg-soft-glow {
+    background-color: #0d0d12;
+    background-image: 
+      radial-gradient(circle at top left, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at bottom right, rgba(71, 85, 105, 0.15) 0%, transparent 40%);
+  }
   .editorial-glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  .editorial-glass-light {
+    @apply bg-black/5 backdrop-blur-xl border border-black/10;
   }
   .editorial-border {
     @apply border border-white/10;
   }
+  .editorial-border-light {
+    @apply border border-black/10;
+  }
   .editorial-glow {
-    box-shadow: 0 0 20px rgba(0, 112, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 163, 255, 0.2);
   }
   .text-editorial-glow {
-    text-shadow: 0 0 10px rgba(0, 112, 255, 0.5);
+    text-shadow: 0 0 10px rgba(0, 163, 255, 0.5);
   }
+  .text-strong {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  .text-silver {
+    @apply bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent;
+  }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3e");
+    opacity: 0.05;
+  }
+  .bg-cyber-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  .bg-cyber-grid-light {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 

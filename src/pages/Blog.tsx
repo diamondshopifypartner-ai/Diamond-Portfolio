@@ -2,13 +2,43 @@ import { motion } from 'motion/react';
 import { Search, ChevronRight, Calendar, Tag } from 'lucide-react';
 import { blogPosts } from '../constants';
 
+const FloatingGlassVisual = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+    {[...Array(3)].map((_, i) => (
+      <motion.div
+        key={i}
+        initial={{ x: Math.random() * 100 + '%', y: Math.random() * 100 + '%', rotate: Math.random() * 360 }}
+        animate={{
+          x: [null, Math.random() * 100 + '%'],
+          y: [null, Math.random() * 100 + '%'],
+          rotate: [null, Math.random() * 360 + 'deg'],
+        }}
+        transition={{ duration: 40 + i * 10, repeat: Infinity, ease: "linear" }}
+        className="absolute w-48 h-48 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[40px] shadow-2xl bg-noise"
+      />
+    ))}
+    <div className="absolute inset-0 bg-gradient-radial from-transparent to-editorial-black" />
+  </div>
+);
+
 const Blog = () => {
   return (
-    <div className="py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="py-20 px-6 relative overflow-hidden bg-editorial-black">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2070" 
+          alt="Library/Data" 
+          className="w-full h-full object-cover opacity-30 filter grayscale brightness-75"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-editorial-black/40" />
+      </div>
+      <FloatingGlassVisual />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-24">
-          <span className="text-[11px] uppercase font-bold tracking-[4px] text-brand-blue mb-4 block">Knowledge Hub</span>
-          <h1 className="text-5xl md:text-7xl font-display font-extrabold tracking-tighter mb-8">Digital Insights</h1>
+          <span className="text-[11px] uppercase font-bold tracking-[4px] text-brand-blue mb-4 block">Knowledge Hub.exe</span>
+          <h1 className="text-5xl md:text-[84px] font-display font-extrabold tracking-tighter text-white leading-none">Digital Insights</h1>
           <div className="max-w-xl mx-auto relative group">
             <input 
               type="text" 
